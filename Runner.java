@@ -33,14 +33,15 @@ public class Runner
     for(Article article : articles)
     {
       Set<String> articleAuthorSet = article.getAuthorSet();	 //Getting the author set of each article
-
-      for(String row : authorList)								 //Iterating the matrix and incrementing count for the corresponding element
+      //Adding this code for clarity, In practice this can be optimized by iterating only the upper half of the matrix(along the diagonal) as the other half will be the mirror image,
+      //Effectively this will iterate only the unique combinations of the authors taken 2 at a time. This iteration is done only for clarity and not for optimal run
+      for(String row : authorList)								 //Iterating the matrix and incrementing count for the corresponding element 
       {
         for(String column : authorList)
         {
           if(articleAuthorSet.contains(row) && articleAuthorSet.contains(column))
           {
-            count[authorList.indexOf(row)][authorList.indexOf(column)] = count[authorList.indexOf(row)][authorList.indexOf(column)] += 1; 
+            count[authorList.indexOf(row)][authorList.indexOf(column)] += 1; 
           }
         }
       }
